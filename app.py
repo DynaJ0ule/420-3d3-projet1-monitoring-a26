@@ -16,6 +16,9 @@ class App:
         self.label_cpu.pack()
         self.canvas_cpu = tk.Canvas(self.frame_cpu, width=300, height=20, bg="white")
         self.canvas_cpu.pack()
+        
+        self.label_80_cpu = tk.Label(self.frame_cpu, fg="red", font=("Arial", 12, "bold"))
+        self.label_80_cpu.pack()
 
         # --- RAM ---
         self.frame_ram = tk.LabelFrame(self.fenetre, text="RAM", padx=10, pady=10)
@@ -53,6 +56,10 @@ class App:
         else:
             couleur_cpu = "red"
         self.canvas_cpu.create_rectangle(0, 0, largeur_cpu, 20, fill=couleur_cpu, outline="")
+        if cpu >= 80:
+            self.label_80_cpu.config(text="Avertissement : 80% ou +")
+        else:
+            self.label_80_cpu.config(text="")
 
         # Mettre à jour RAM
         self.label_ram.config(text=f"{ram:.1f}%")
